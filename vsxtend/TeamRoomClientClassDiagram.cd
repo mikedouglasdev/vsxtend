@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Vsxtend.Resources.TeamRoomClient">
+    <Position X="7.25" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAABAAIggAAAAAAAAAAAAAIAAAAAAACQABAAEUCAJAA=</HashCode>
+      <FileName>Resources\TeamRoomClient.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Vsxtend.Resources.ResourceHttpClient">
+    <Position X="4.25" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\ResourceHttpClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vsxtend.Common.RestHttpClient">
+    <Position X="1.25" Y="2" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAoA=</HashCode>
+      <FileName>Common\RestHttpClient.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
