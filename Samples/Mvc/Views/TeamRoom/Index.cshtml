@@ -1,0 +1,50 @@
+﻿@model Vsxtend.Entities.CollectionResult<Vsxtend.Entities.TeamRoom>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.value.FirstOrDefault().name)*@
+            Room Name
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.value.FirstOrDefault().description)*@
+            Description
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.value.FirstOrDefault().isClosed)*@
+            Last Activity
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.value) {
+    <tr>
+
+        <td width="200px">
+            @Html.DisplayFor(modelItem  => item.name)
+        </td>
+        <td with="300px">
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td width="200px">
+            @Html.DisplayFor(modelItem => item.lastActivity)
+        </td>
+        <td>
+            @Html.ActionLink("Join", "Join", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

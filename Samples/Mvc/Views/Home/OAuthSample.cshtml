@@ -1,0 +1,40 @@
+﻿@model Vsxtend.Samples.Mvc.Entities.CollectionResult<Vsxtend.Entities.TeamRoom>
+
+@{
+    ViewBag.Title = "OAuth";
+}
+
+<h2>OAuth</h2>
+
+<table>
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.value.FirstOrDefault().name)*@
+            Room Name
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.value.FirstOrDefault().description)*@
+            Description
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.value.FirstOrDefault().isClosed)*@
+            Last Activity
+        </th>
+    </tr>
+
+    @foreach (var item in Model.value)
+    {
+        <tr>
+            <td width="200px">
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td with="300px">
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td width="200px">
+                @Html.DisplayFor(modelItem => item.lastActivity)
+            </td>
+        </tr>
+    }
+
+</table>
