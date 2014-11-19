@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{53BF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc", "Samples\Mvc\Mvc.csproj", "{3097AA9A-814D-4BA3-BB87-CBB45003C692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vsxtend.UnitTests", "vsxtend.UnitTests\vsxtend.UnitTests.csproj", "{DC5FF847-F9EB-44B6-A649-FC6C29C5C97E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSOWebHooks", "Samples\VSOWebHooks\VSOWebHooks.csproj", "{20785036-072C-41D8-9408-62DB0AB3D70C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +27,20 @@ Global
 		{3097AA9A-814D-4BA3-BB87-CBB45003C692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3097AA9A-814D-4BA3-BB87-CBB45003C692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3097AA9A-814D-4BA3-BB87-CBB45003C692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5FF847-F9EB-44B6-A649-FC6C29C5C97E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5FF847-F9EB-44B6-A649-FC6C29C5C97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5FF847-F9EB-44B6-A649-FC6C29C5C97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5FF847-F9EB-44B6-A649-FC6C29C5C97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20785036-072C-41D8-9408-62DB0AB3D70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20785036-072C-41D8-9408-62DB0AB3D70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20785036-072C-41D8-9408-62DB0AB3D70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20785036-072C-41D8-9408-62DB0AB3D70C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3097AA9A-814D-4BA3-BB87-CBB45003C692} = {53BF24DB-3CE9-46CD-BC98-510656D08D97}
+		{20785036-072C-41D8-9408-62DB0AB3D70C} = {53BF24DB-3CE9-46CD-BC98-510656D08D97}
 	EndGlobalSection
 EndGlobal

@@ -12,8 +12,11 @@ namespace Vsxtend.Common
 {
     public class RestHttpClient : IRestHttpClient
     {
-        public async Task<T> GetAsync<T>(AuthenticationBase authentication, string address)
+        public async Task<T> GetAsync<T>(AuthenticationBase authentication, string address, string apiVersion = "")
         {
+            if (apiVersion == "")
+                apiVersion = authentication.ApiVersion;
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(
@@ -44,8 +47,11 @@ namespace Vsxtend.Common
             }
         }
 
-        public async Task PutAsync(AuthenticationBase authentication, string address, StringContent content)
+        public async Task PutAsync(AuthenticationBase authentication, string address, StringContent content, string apiVersion = "")
         {
+            if (apiVersion == "")
+                apiVersion = authentication.ApiVersion;
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(
@@ -53,7 +59,7 @@ namespace Vsxtend.Common
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                using (HttpResponseMessage response = await client.PutAsync(address, content))
+                using (HttpResponseMessage response = await client.PutAsync(address + "?" + apiVersion, content))
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();
@@ -62,8 +68,11 @@ namespace Vsxtend.Common
                 }
             }
         }
-        public async Task<T> PutAsync<T>(AuthenticationBase authentication, string address, StringContent content)
+        public async Task<T> PutAsync<T>(AuthenticationBase authentication, string address, StringContent content, string apiVersion = "")
         {
+            if (apiVersion == "")
+                apiVersion = authentication.ApiVersion;
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(
@@ -71,7 +80,7 @@ namespace Vsxtend.Common
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                using (HttpResponseMessage response = await client.PutAsync(address, content))
+                using (HttpResponseMessage response = await client.PutAsync(address +"?"+apiVersion, content))
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();
@@ -83,26 +92,27 @@ namespace Vsxtend.Common
             }
         }
 
-        public async Task<T> PostAsync<T>(AuthenticationBase authentication, string address, T model)
+        public async Task<T> PostAsync<T>(AuthenticationBase authentication, string address, T model, string apiVersion = "")
         {
+            if (apiVersion == "")
+                apiVersion = authentication.ApiVersion;
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(
                     new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
-
-                //var content = new ObjectContent<T>(model, new JsonMediaTypeFormatter());
-
-                var request = new HttpRequestMessage(new HttpMethod("PATCH"), address);
+              
                 string jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(model);
 
                 var content = new StringContent(jsonModel, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage response = await client.PostAsync(address, content))
+                using (HttpResponseMessage response = await client.PostAsync(address+"?"+apiVersion, content))
                 {
                     // will throw an exception if not successful
-                    //response.EnsureSuccessStatusCode();
+                   // response.EnsureSuccessStatusCode();
+
                     string responseBody = await response.Content.ReadAsStringAsync();
 
                     if (typeof(T) == typeof(string))
@@ -115,8 +125,11 @@ namespace Vsxtend.Common
         }
 
         
-        public async Task<T> PatchAsync<T>(AuthenticationBase authentication, string address, T model)
+        public async Task<T> PatchAsync<T>(AuthenticationBase authentication, string address, T model, string apiVersion = "")
         {
+            if (apiVersion == "")
+                apiVersion = authentication.ApiVersion;
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(
@@ -124,7 +137,7 @@ namespace Vsxtend.Common
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                var request = new HttpRequestMessage(new HttpMethod("PATCH"), address);
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), address + "?" + apiVersion);
                 string jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(model);
 
                 request.Content = new StringContent(jsonModel, Encoding.UTF8, "application/json");
@@ -141,13 +154,16 @@ namespace Vsxtend.Common
             }
         }
 
-        public async Task DeleteAsync(AuthenticationBase authentication, string address)
+        public async Task DeleteAsync(AuthenticationBase authentication, string address, string apiVersion = "")
         {
+            if (apiVersion == "")
+                apiVersion = authentication.ApiVersion;
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                using (HttpResponseMessage response = await client.DeleteAsync(address))
+                using (HttpResponseMessage response = await client.DeleteAsync(address + "?" + apiVersion))
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();

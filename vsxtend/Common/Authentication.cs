@@ -8,6 +8,19 @@ namespace Vsxtend.Common
     public abstract class AuthenticationBase
     {
         public string Account { get; set; }
+
+        string apiVersion = "api-version=1.0";
+        public string ApiVersion
+        {
+            get
+            {
+                return apiVersion;
+            }
+            set
+            {
+                apiVersion = value;
+            }
+        }
     }
     public class BasicAuthentication : AuthenticationBase
     {

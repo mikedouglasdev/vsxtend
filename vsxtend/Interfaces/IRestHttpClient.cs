@@ -10,16 +10,16 @@ namespace Vsxtend.Interfaces
 {
     public interface IRestHttpClient
     {
-        Task<T> GetAsync<T>(AuthenticationBase authentication, string address);
+        Task<T> GetAsync<T>(AuthenticationBase authentication, string address, string apiVersion = "");
 
-        Task PutAsync(AuthenticationBase authentication, string address, StringContent content);
+        Task PutAsync(AuthenticationBase authentication, string address, StringContent content, string apiVersion = "");
 
-        Task<T> PutAsync<T>(AuthenticationBase authentication, string address, StringContent content);
+        Task<T> PutAsync<T>(AuthenticationBase authentication, string address, StringContent content, string apiVersion = "");
 
-        Task<T> PostAsync<T>(AuthenticationBase authentication, string address, T model);
+        Task<T> PostAsync<T>(AuthenticationBase authentication, string address, T model, string apiVersion = "");
 
-        Task<T> PatchAsync<T>(AuthenticationBase authentication, string address, T model);
+        Task<T> PatchAsync<T>(AuthenticationBase authentication, string address, T model, string apiVersion = "");
 
-        Task DeleteAsync(AuthenticationBase authentication, string address);
+        Task DeleteAsync(AuthenticationBase authentication, string address, string apiVersion = "");
     }
 }
