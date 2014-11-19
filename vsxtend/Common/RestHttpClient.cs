@@ -28,7 +28,7 @@ namespace Vsxtend.Common
                             address).Result)
                 {
                     // will throw an exception if not successful
-                    //response.EnsureSuccessStatusCode();
+                    response.EnsureSuccessStatusCode();
                     string responseBody = await response.Content.ReadAsStringAsync();
 
                     if (!response.IsSuccessStatusCode)
@@ -111,7 +111,7 @@ namespace Vsxtend.Common
                 using (HttpResponseMessage response = await client.PostAsync(address+"?"+apiVersion, content))
                 {
                     // will throw an exception if not successful
-                   // response.EnsureSuccessStatusCode();
+                    response.EnsureSuccessStatusCode();
 
                     string responseBody = await response.Content.ReadAsStringAsync();
 
