@@ -13,26 +13,25 @@ namespace Vsxtend.UnitTests.Integration
     public class TeamRoomTests
     {
         [TestMethod]
-        public async Task TeamRoom_GetRooms_ShouldReturnAllTeamRooms()
-        {
-            // Arrange
-            RestHttpClient teamroomClient = new RestHttpClient();
-            BasicAuthentication authentication = new BasicAuthentication 
-            { 
-                Username = Helper.GetUsername(), 
-                Password = Helper.GetPassword(), 
-                Account = Helper.GetAccount() + ".visualstudio.com/DefaultCollection" };
-
+public async Task TeamRoom_GetRooms_ShouldReturnAllTeamRooms()
+{
+    // Arrange
             
+    BasicAuthentication authentication = new BasicAuthentication 
+    { 
+        Username = Helper.GetUsername(), 
+        Password = Helper.GetPassword(), 
+        Account = Helper.GetAccount() + ".visualstudio.com/DefaultCollection" 
+    };
+    TeamRoomClient teamroomClient = new TeamRoomClient(authentication);
 
-            // Act
-            var response = await teamroomClient.GetAsync<CollectionResult<TeamRoom>>(authentication,
-                                                                            string.Format("https://{0}/_apis/chat/Rooms",
-                                                                            authentication.Account));
-            // Assert
-            Assert.IsNotNull(response);
-            Assert.IsNotNull(response.value);
-        }
+    // Act
+    CollectionResult<TeamRoom> response = await teamroomClient.GetRoomsAsync();
+
+    // Assert
+    Assert.IsNotNull(response);
+    Assert.IsNotNull(response.value);
+}
 
         [TestMethod]
         public async Task TeamRoom_GetRoom_ShouldReturnTeamRoom54()
