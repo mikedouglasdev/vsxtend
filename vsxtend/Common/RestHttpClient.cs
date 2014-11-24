@@ -24,8 +24,7 @@ namespace Vsxtend.Common
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                using (HttpResponseMessage response = client.GetAsync(
-                            address).Result)
+                using (HttpResponseMessage response = client.GetAsync(GetAddressQueryString(address, apiVersion)).Result)
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();
@@ -59,7 +58,7 @@ namespace Vsxtend.Common
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                using (HttpResponseMessage response = await client.PutAsync(address + "?" + apiVersion, content))
+                using (HttpResponseMessage response = await client.PutAsync(GetAddressQueryString(address, apiVersion), content))
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();
@@ -80,7 +79,7 @@ namespace Vsxtend.Common
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                using (HttpResponseMessage response = await client.PutAsync(address +"?"+apiVersion, content))
+                using (HttpResponseMessage response = await client.PutAsync(GetAddressQueryString(address, apiVersion), content))
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();
@@ -108,7 +107,7 @@ namespace Vsxtend.Common
 
                 var content = new StringContent(jsonModel, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage response = await client.PostAsync(address+"?"+apiVersion, content))
+                using (HttpResponseMessage response = await client.PostAsync(GetAddressQueryString(address, apiVersion), content))
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();
@@ -137,7 +136,7 @@ namespace Vsxtend.Common
 
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                var request = new HttpRequestMessage(new HttpMethod("PATCH"), address + "?" + apiVersion);
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), GetAddressQueryString(address, apiVersion));
                 string jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(model);
 
                 request.Content = new StringContent(jsonModel, Encoding.UTF8, "application/json");
@@ -163,7 +162,7 @@ namespace Vsxtend.Common
             {
                 client.DefaultRequestHeaders.Authorization = GetAuthenticationHeaderValue(authentication);
 
-                using (HttpResponseMessage response = await client.DeleteAsync(address + "?" + apiVersion))
+                using (HttpResponseMessage response = await client.DeleteAsync(GetAddressQueryString(address, apiVersion)))
                 {
                     // will throw an exception if not successful
                     response.EnsureSuccessStatusCode();
@@ -195,6 +194,16 @@ namespace Vsxtend.Common
             }
 
             throw new InvalidCastException("Authentication type is unknown.");
+        }
+
+        private string GetAddressQueryString(string address, string parameter)
+        {
+            if (parameter.Length == 0)
+                return address;
+
+            string seperator = address.IndexOf("?") > 0 ? "&" : "?";
+
+            return string.Format("{0}{1}{2}", address, seperator, parameter);
         }
     }
 }

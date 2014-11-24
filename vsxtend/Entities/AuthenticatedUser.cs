@@ -23,7 +23,7 @@ public class Domain
     public string __invalid_name__value { get; set; }
 }
 
-public class Account
+public class AuthenticatedUserAccount
 {
     public string __invalid_name__type { get; set; }
     public string __invalid_name__value { get; set; }
@@ -58,7 +58,7 @@ public class Properties
     public SchemaClassName SchemaClassName { get; set; }
     public Description Description { get; set; }
     public Domain Domain { get; set; }
-    public Account Account { get; set; }
+    public AuthenticatedUserAccount Account { get; set; }
     public DN DN { get; set; }
     public Mail Mail { get; set; }
     public SpecialType SpecialType { get; set; }
